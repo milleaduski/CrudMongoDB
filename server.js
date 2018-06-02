@@ -12,9 +12,8 @@ var user  = require('./models/user');
 // body-parser configuration
 app.use(bodyParser.urlencoded({ extended: true}));
 app.use(bodyParser.json());
-
 router.get('/', function(req, res){
-	res.json({message: 'welcome to my tutorial'});
+	res.json({message: "Welcome to my tutorial, I'm Duski", date: new Date()});
 });
 
 router.route('/members')
@@ -24,7 +23,7 @@ router.route('/members')
 		user.password	= req.body.password;
 		user.save(function(err){
 			if(err) res.send(err);
-			res.json({message: 'user successfully added'});
+			res.json({message: 'user successfully added', date: new Date()});
 		})
 	}).get(function(req, res){
 		User.find(function(err, users){
@@ -45,12 +44,12 @@ router.route('/members/:name')
 			{ name : req.body.name}, 
 			function(err){
 				if(err) res.send(err);
-				res.json({message: 'user successfully updated'});
+				res.json({message: 'user successfully updated', date: new Date()});
 			});
 	}).delete(function(req, res){
 		User.remove({name : req.params.name}, function(err){
 			if(err) res.send(err);
-			res.json({message: 'user successfully deleted'});
+			res.json({message: 'user successfully deleted', date: new Date()});
 		});
 	});
 
